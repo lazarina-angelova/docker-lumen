@@ -17,38 +17,38 @@
 
 ### 2. Clone the repo and create environment file
 ```bash
-$ git clone https://github.com/lazarina-angelova/bigcommerce
+$ git clone https://github.com/lazarina-angelova/docker-lumen
 ```
 
 ```bash
-cp /path/to/bigcommerce/.env.example /path/to/bigcommerce/.env
+cp /path/to/docker-lumen/.env.example /path/to/docker-lumen/.env
 ```
 
 ### 3. Start containers
 ```bash
-cd /path/to/bigcommerce && docker-compose up -d
+cd /path/to/docker-lumen && docker-compose up -d
 ```
 
 ### 4. Install backend requirements (change the name of the Docker container if you have changed the PROJECT_NAME in the .env file)
 ```bash
-docker exec -u 1000 bigcommerce-php ash -c "cd /app && composer install --no-ansi -o -n"
+docker exec -u 1000 app-php ash -c "cd /app && composer install --no-ansi -o -n"
 ```
 
 ### 5. Run DB setup
 
 #### 6.1. Generate new migration
 ```bash
-docker exec -u 1000 bigcommerce-php ash -c "cd /app && php artisan doctrine:migrations:generate"
+docker exec -u 1000 app-php ash -c "cd /app && php artisan doctrine:migrations:generate"
 ```
 
 #### 6.2. Run migrations
 ```bash
-docker exec -u 1000 bigcommerce-php ash -c "cd /app && php artisan migrate"
+docker exec -u 1000 app-php ash -c "cd /app && php artisan migrate"
 ```
 
 #### 6.3. Generate Repositories
 ```bash
-docker exec -u 1000 bigcommerce-php ash -c "cd /app && php artisan make:entity --regenerate"
+docker exec -u 1000 app-php ash -c "cd /app && php artisan make:entity --regenerate"
 ```
 
 ### 6. Edit your hosts file to include the following row

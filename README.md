@@ -17,42 +17,36 @@
 
 ### 2. Clone the repo and create environment file
 ```bash
-$ git clone https://github.com/lazarina-angelova/docker-lumen
+$ git clone https://github.com/lazarina-angelova/myapp
 ```
 
 ```bash
-cp /path/to/docker-lumen/.env.example /path/to/docker-lumen/.env
+cp /path/to/myapp/.env.example /path/to/myapp/.env
 ```
 
 ### 3. Start containers
 ```bash
-cd /path/to/docker-lumen && docker-compose up -d
+cd /path/to/myapp && docker-compose up -d
 ```
 
-### 4. Install backend requirements (change the name of the Docker container if you have changed the PROJECT_NAME in the .env file)
+### 4. Install backend requirements (change the name of the Docker container if you have changed the APP_NAME in the .env file)
 ```bash
-docker exec -u 1000 app-php ash -c "cd /app && composer install --no-ansi -o -n"
+docker exec -u 1000 myapp-php bash -c "cd /app && composer install --no-ansi -o -n"
 ```
 
 ### 5. Run DB setup
 
-#### 6.1. Generate new migration
+#### 56.1. Create new migration
 ```bash
-docker exec -u 1000 app-php ash -c "cd /app && php artisan doctrine:migrations:generate"
+docker exec -u 1000 myapp-php bash -c "cd /app && php artisan make:migration {Migration Name}"
 ```
 
-#### 6.2. Run migrations
+#### 5.1. Run migrations
 ```bash
-docker exec -u 1000 app-php ash -c "cd /app && php artisan migrate"
-```
-
-#### 6.3. Generate Repositories
-```bash
-docker exec -u 1000 app-php ash -c "cd /app && php artisan make:entity --regenerate"
+docker exec -u 1000 myapp-php bash -c "cd /app && php artisan migrate --force"
 ```
 
 ### 6. Edit your hosts file to include the following row
 `127.0.0.1 localhost`
 
-### 7. Go to  (change the name of the port if you have changed the HTTP_PORT in the .env file)
-http://localhost
+### 7. Go to http://localhost

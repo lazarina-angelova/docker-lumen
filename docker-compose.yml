@@ -8,9 +8,9 @@ services:
     container_name: ${APP_NAME}-php
     restart: unless-stopped
     tty: true
-    working_dir: /var/www
+    working_dir: /app
     volumes:
-      - ./src:/var/www
+      - ./src:/app
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
@@ -25,7 +25,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./src:/var/www
+      - ./src:/app
       - ./docker/nginx/:/etc/nginx/conf.d/
     networks:
       - app-network
@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "3306:3306"
+      - "0.0.0.0:${DB_PORT_BIND}:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}

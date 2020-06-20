@@ -2,10 +2,7 @@
     "name": "laravel/lumen",
     "type": "project",
     "description": "The Laravel Lumen Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
+    "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
@@ -28,9 +25,6 @@
         ]
     },
     "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

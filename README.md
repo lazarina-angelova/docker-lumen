@@ -17,7 +17,7 @@
 
 ### 2. Clone the repo and create environment file
 ```bash
-$ git clone https://github.com/lazarina-angelova/docker-lumen
+$ git clone https://github.com/lazarina-angelova/myapp
 ```
 
 ```bash
